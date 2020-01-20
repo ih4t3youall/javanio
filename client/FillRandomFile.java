@@ -16,7 +16,8 @@ public class FillRandomFile{
     }
 
     checkFileExistence();
-    String dirName ="/home/hate/Documents/workspace/erisx/client/clientV2/files";
+    //String dirName ="c:/Users/mlequerica/Documents/workspace/javanio/client/files";
+    String dirName ="/mnt/c/Users/mlequerica/Documents/workspace/javanio/client/files";
     FileWriter fw = new FileWriter(dirName+"/"+filename);
 
     for (int i = 0 ; i < Integer.valueOf(args[0]) ; i++){

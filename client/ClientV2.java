@@ -45,7 +45,7 @@ public class ClientV2{
   }
 
   public List<Path> readFiles() {
-       String dirName ="/home/hate/Documents/workspace/erisx/client/clientV2/files";
+       String dirName ="/mnt/c/Users/mlequerica/Documents/workspace/javanio/client/files";
        try {
 	return Files.list(new File(dirName).toPath()).collect(Collectors.toList());
        }catch(IOException e){

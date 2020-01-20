@@ -35,10 +35,10 @@ public class SendThread implements Runnable{
 	byte[] message = new String(pureMessage).getBytes();
 	ByteBuffer buffer  = ByteBuffer.wrap(message);
 	client.write(buffer);
-//	int numRead = client.read(buffer);
-//	byte[] data  = new byte[numRead];
-//	System.arraycopy(buffer.array(), 0, data, 0, numRead);
-//        System.out.println("Got: " + new String(data));
+	int numRead = client.read(buffer);
+	byte[] data  = new byte[numRead];
+	System.arraycopy(buffer.array(), 0, data, 0, numRead);
+        System.out.println("Got: " + new String(data));
       }
       client.close();
     }catch(IOException e){

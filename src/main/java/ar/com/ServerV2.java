@@ -78,26 +78,18 @@ public class ServerV2{
             this.selector.select();
             long start = System.currentTimeMillis();
 
-
             Iterator keys = this.selector.selectedKeys().iterator();
-            int size = this.selector.selectedKeys().size();
-
 
             while (keys.hasNext()){
                 SelectionKey key = (SelectionKey) keys.next();
-
-
                 if(!key.isValid())
                     continue;
-
                 if(key.isAcceptable()){
                     this.accept(key);
                 }else{
-
                     if(key.isReadable()){
                         this.read(key);
                     }
-
                 }
                 keys.remove();
             }
@@ -109,13 +101,13 @@ public class ServerV2{
     //read from the socket channel
     private void read(SelectionKey key) throws IOException {
 
-        this.queue.add(key);
-
-
-//        SocketChannel channel = (SocketChannel) key.channel();
+        //this.queue.add(key);
+        SocketChannel channel = (SocketChannel) key.channel();
 //        ByteBuffer buffer = ByteBuffer.allocate(1024);
 //        int numRead = -1;
 //        numRead = channel.read(buffer);
+        new Thread(new ThreadV2(channel)).start();
+        key.cancel();
 
 //        if (numRead == -1) {
 //            this.dataMapper.remove(channel);
@@ -124,7 +116,6 @@ public class ServerV2{
 //            System.out.println("Connection closed by client: " + remoteAddr);
 //            channel.close();
 //            key.cancel();
-//            return;
 //        }
 
 //        byte[] data = new byte[numRead];
